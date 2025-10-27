@@ -1,5 +1,5 @@
 
-# Para rodar o projeto:
+# Como rodar o projeto
 
 ### Passo a passo
 Clone Repositório
