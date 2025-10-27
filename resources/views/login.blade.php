@@ -47,7 +47,7 @@
 
                     <!-- copy -->
                     <div class="text-center text-secondary mt-3">
-                        <small>&copy; <?= date('Y') ?> JhordSuzuki Notes</small>
+                        <small>&copy; <?= date('Y') ?> JhordSuzuki Simple Notes</small>
                     </div>
                 </div>
             </div>
