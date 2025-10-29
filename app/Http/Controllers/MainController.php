@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class MainController extends Controller
 {
@@ -16,5 +17,14 @@ class MainController extends Controller
     
     public function newNote() {
         echo 'Im create a new note';
+    }
+
+    public function editNote($id) {
+        $idDecrypted = Crypt::decrypt($id);
+        echo $idDecrypted;
+    }
+
+    public function deleteNote() {
+        echo 'Im delete a new note';
     }
 }
