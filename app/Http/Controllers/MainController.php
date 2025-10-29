@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     function index() {
-        return view('main');
-    }  
+        echo 'inside APp';
+    } 
+    
+    public function newNote() {
+        echo 'create a new note';
+    }
 }
