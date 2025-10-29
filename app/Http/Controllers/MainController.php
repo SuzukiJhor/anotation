@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use App\Models\User;
 use App\Services\Operations;
 use Illuminate\Http\Request;
@@ -35,7 +36,13 @@ class MainController extends Controller
             'text_note.max' => 'A nota deve ter no máximo :max caracteres',
         ]);
 
-        echo 'ok';
+        $userId = session('user.id');
+        $newNote = new Note();
+        $newNote->user_id = $userId;
+        $newNote->title = $request->text_title;
+        $newNote->text = $request->text_note;#
+        $newNote->save();
+        return redirect()->route('home');
     }
 
     public function editNote($id)
