@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\Operations;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-
 class MainController extends Controller
 {
     function index()
@@ -20,7 +17,25 @@ class MainController extends Controller
 
     public function newNote()
     {
-        echo 'Im create a new note';
+        return view('new_note');
+    }
+
+    public function newNoteSubmit(Request $request)
+    {
+         $request->validate([
+            'text_title' => 'required|min:3|max:200',
+            'text_note' => 'required|min:3|max:300',
+        ],
+        [
+            'text_title.required' => 'O Título é obrigatório',
+            'text_password.required' => 'A senha é obrigatória',
+            'text_title.min' => 'A senha deve ter pelo menos :min caracteres',
+            'text_note.required' => 'A Nota é obrigatória',
+            'text_note.min' => 'A nota deve ter pelo menos :min caracteres',
+            'text_note.max' => 'A nota deve ter no máximo :max caracteres',
+        ]);
+
+        echo 'ok';
     }
 
     public function editNote($id)
