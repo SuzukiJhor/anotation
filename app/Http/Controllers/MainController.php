@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     function index() {
-        echo 'inside APp';
+        echo 'im inside in the App';
     } 
     
     public function newNote() {
-        echo 'create a new note';
+        echo 'Im create a new note';
     }
 }
