@@ -12,7 +12,7 @@ class MainController extends Controller
     {
         $userId = session('user.id');
         $user = User::find($userId)->toArray();
-        $notes = User::find($userId)->notes()->get()->toArray();
+        $notes = User::find($userId)->notes()->whereNull('deleted_at')->get()->toArray();
         return view('home', ['notes' => $notes]);
     }
 
@@ -48,12 +48,55 @@ class MainController extends Controller
     public function editNote($id)
     {
         $id = Operations::decryptId($id);
-        echo 'Im edit a  note with id: ' . $id;
+
+        $note = Note::find($id);
+       return view('edit_note', ['note' => $note]);
+    }
+
+    public function editNoteSubmit(Request $request)
+    {
+         $request->validate([
+            'text_title' => 'required|min:3|max:200',
+            'text_note' => 'required|min:3|max:300',
+        ],
+        [
+            'text_title.required' => 'O Título é obrigatório',
+            'text_password.required' => 'A senha é obrigatória',
+            'text_title.min' => 'A senha deve ter pelo menos :min caracteres',
+            'text_note.required' => 'A Nota é obrigatória',
+            'text_note.min' => 'A nota deve ter pelo menos :min caracteres',
+            'text_note.max' => 'A nota deve ter no máximo :max caracteres',
+        ]);
+
+        if($request->note_id == null){
+            return redirect()->route('home');
+        }
+        
+        $id = Operations::decryptId($request->note_id);
+
+        $note = Note::find($id);
+
+        $note->title = $request->text_title;
+        $note->text = $request->text_note;#
+        $note->save();
+        return redirect()->route('home');
     }
 
     public function deleteNote($id)
     {
         $id = Operations::decryptId($id);
-        echo 'Im delete a  note with id: ' . $id;
+       
+        $note = Note::find($id);
+
+        return view('delete_note', ['note' => $note]);
+   
+    }
+    public function deleteConfirm($id)
+    {
+        $id = Operations::decryptId($id);
+       
+        $note = Note::find($id);
+        $note->delete();
+        return redirect()->route('home');
     }
 }
