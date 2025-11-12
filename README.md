@@ -1,6 +1,6 @@
 ### 🧭 Projeto Notes - Laravel
 
-Desenvolvido em Laravel 11, apresenta uma arquitetura que explora os principais recursos do framework. A aplicação integra rotas dinâmicas, controllers estruturados e views Blade para uma experiência fluida entre back-end e front-end. A camada de persistência utiliza Eloquent ORM, com migrations e seeders, e versionamento do banco de dados. Foram implementadas práticas de segurança por encriptação, e estratégias de soft delete e hard delete.
+Desenvolvido em Laravel 11, arquitetura que explora os principais recursos do framework. A aplicação integra rotas dinâmicas, controllers e views Blade. Persistência com Eloquent ORM, com migrations e seeders, e versionamento do banco de dados. Práticas de segurança por encriptação, e estratégias de soft e hard delete.
 
 
 ### 🔦 Como rodar o projeto
